@@ -140,9 +140,12 @@
             }]
         }));
         
+        // UI REVISION PRESERVES USER CAMERA ANGLES AND PAN POSITIONS ON FRAME REDRAWS!
         const layout = {
+            uirevision: 'true',
             dragmode: 'pan',
             scene: {
+                uirevision: 'true',
                 xaxis: { visible: false, range: [-0.1, 1.1] },
                 yaxis: { visible: false, range: [-0.1, 1.0] },
                 zaxis: { visible: false, range: [-0.1, 0.9] },
