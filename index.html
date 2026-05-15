@@ -9,13 +9,15 @@
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; background-color: #111; color: #eee; position: relative; }
         h1 { font-weight: 600; font-size: 26px; margin-bottom: 5px; padding-right: 70px; }
         p.subtitle { color: #aaa; font-size: 14px; margin-top: 0; margin-bottom: 15px; }
-        #plot { width: 100%; height: 72vh; }
-        .info-container { display: flex; gap: 20px; margin-top: 15px; font-size: 14px; }
-        .card { background: #1e252b; padding: 20px; border-radius: 10px; flex: 1; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
-        .card.onp-card { border-left: 5px solid #F49D22; background: #1a2026; flex: 1.3; }
+        #plot { width: 100%; height: 70vh; }
+        .info-container { display: flex; gap: 20px; margin-top: 15px; font-size: 14px; flex-wrap: wrap; }
+        .card { background: #1e252b; padding: 20px; border-radius: 10px; flex: 1; min-width: 300px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+        .card.onp-card { border-left: 5px solid #F49D22; background: #1a2026; flex: 1.4; }
         .card.legend-card { border-left: 5px solid #54CCE3; background: #161a1e; }
+        .card.sources-card { border-left: 5px solid #E42534; background: #1c1a1e; flex: 1.2; }
         h3 { margin-top: 0; color: #54CCE3; font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 8px; margin-bottom: 12px; }
         .onp-title { color: #F49D22; }
+        .sources-title { color: #E42534; }
         .badge { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; }
         .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
         .data-table th, .data-table td { padding: 6px 10px; text-align: left; border-bottom: 1px solid #2e3740; }
@@ -40,32 +42,38 @@
     </a>
 
     <h1>Australian Federal Elections (2004–2026) in 4D Simplex Space</h1>
-    <p class="subtitle">Interpolating primary vote trajectories across 8 federal elections and 2026 demographic transition matrices (89 Quarterly Steps)</p>
+    <p class="subtitle">Inspired by ABC News Ternary Plot analysis, expanding into a WebGL 4-dimensional simplex across 8 federal elections</p>
     
     <div id="plot"></div>
     
     <div class="info-container">
         <div class="card legend-card">
-            <h3>Key Vertices (100% Primary Corners)</h3>
+            <h3>Key Vertices (100% Corners)</h3>
             <span class="badge" style="background: #E42534;"></span> <strong>Labor (ALP)</strong>: (0,0,0) bottom-left ground<br>
             <span class="badge" style="background: #007BC1;"></span> <strong>Coalition (LNP)</strong>: (1,0,0) bottom-right ground<br>
-            <span class="badge" style="background: #F49D22;"></span> <strong>One Nation (ONP)</strong>: Top 3D elevation peak<br>
+            <span class="badge" style="background: #F49D22;"></span> <strong>One Nation (ONP)</strong>: Top vertical 3D elevation peak<br>
             <span class="badge" style="background: #808080;"></span> <strong>Other / Greens / Teals</strong>: Top-back ground corner<br><br>
             <strong>3D Navigation Controls:</strong><br>
-            • <em>Rotate</em>: Left-click & drag on the canvas<br>
-            • <em>Zoom</em>: Mouse wheel scroll or two-finger pinch<br>
+            • <em>Rotate</em>: Left-click & drag on canvas<br>
+            • <em>Zoom</em>: Mouse wheel scroll<br>
             • <em>Pan</em>: Right-click & drag
         </div>
         
-        <div class="card onp-card">
-            <h3 class="onp-title">One Nation Focus: Demographic Vulnerability & LNP Defection Matrix</h3>
-            <strong>Methodology Overhaul</strong>: Grounded in early 2026 YouGov/DemosAU polling and historical 1998/2016 migration matrices. The 2026 projection calculates a <em>Demographic Vulnerability Index</em> (beta_d = [Seat 2025 ONP%] / [National 2025 ONP avg 6.40%]). In vulnerable regional/suburban seats, polling shows disaffected conservative voters defect from LNP to ONP in massive droves (defection rates up to 45%), while progressive Labor bases shed much less (max 20%).<br>
-            
-            <div class="highlight-box">
-                <strong>Psephological Case Study: Kingston (SA)</strong><br>
-                In 2025, Kingston had <strong>6.2%</strong> ONP (beta_d = 0.97). Under the new demographic transition matrix, LNP sheds 19.4% of its base and Labor sheds 9.7% of its base. This brings Kingston to exactly <strong>17.1% One Nation</strong> (down from our previous clumsy 23.6% uniform addition model!), perfectly reflecting how One Nation cannibalizes conservative LNP bases in working-class outer suburbs while maintaining realistic demographic ceilings.
-            </div>
+        <div class="card sources-card">
+            <h3 class="sources-title">Project Citations & Data Sources</h3>
+            • <strong>Inspiration</strong>: ABC News Interactive Ternary Analysis, <br>
+            <a href="https://www.abc.net.au/news/2025-04-24/election-data-rise-independents-major-party-drift/105144918" target="_blank"><em>"Over five decades, here's how voters have shifted away from the major parties"</em> (April 2025)</a>.<br><br>
+            • <strong>Official AEC Data</strong>: Certified division-by-division candidate primary vote downloads for 2004, 2007, 2010, 2013, 2016, 2019, 2022, and 2025 (<a href="https://results.aec.gov.au" target="_blank">results.aec.gov.au</a>).<br><br>
+            • <strong>Psephos Archive</strong>: Dr Adam Carr's historical electoral database (<a href="http://psephos.adam-carr.net/" target="_blank">psephos.adam-carr.net</a>).<br><br>
+            • <strong>2026 Polling Consensus</strong>: National tracking from YouGov (<a href="https://yougov.com" target="_blank">yougov.com</a>), Roy Morgan (<a href="https://roymorgan.com" target="_blank">roymorgan.com</a>), RedBridge, and Antony Green's electoral commentary (<a href="https://antonygreen.com.au" target="_blank">antonygreen.com.au</a>).
+        </div>
 
+        <div class="card onp-card">
+            <h3 class="onp-title">One Nation Focus: 2025 Exact Actuals vs 2026 Polling Surge</h3>
+            <strong>National Primary Shift</strong>: Surged from <strong>6.40%</strong> (2025 Actual) to <strong>25.0% - 32.0%</strong> (Early 2026 YouGov/RedBridge/Morgan polls).<br>
+            <strong>Key 2026 Lore Hardpoints</strong>:<br>
+            • <span style="color:#F49D22;">★ Farrer (NSW) Victory</span>: David Farley won the May 2026 by-election with exactly <strong>39.54%</strong> primary (57.5% 2CP), taking the seat from LNP.<br>
+            • <span style="color:#F49D22;">★ New England (NSW) Stronghold</span>: Barnaby Joyce defected in Dec 2025 (modeled at 55% ONP base).
             <table class="data-table">
                 <thead>
                     <tr>
