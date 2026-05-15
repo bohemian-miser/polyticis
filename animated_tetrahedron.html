@@ -53,10 +53,10 @@
             <span class="badge" style="background: #007BC1;"></span> <strong>Coalition (LNP)</strong>: (1,0,0) bottom-right ground<br>
             <span class="badge" style="background: #F49D22;"></span> <strong>One Nation (ONP)</strong>: Top vertical 3D elevation peak<br>
             <span class="badge" style="background: #808080;"></span> <strong>Other / Greens / Teals</strong>: Top-back ground corner<br><br>
-            <strong>3D Navigation Controls:</strong><br>
-            • <em>Rotate</em>: Left-click & drag on canvas<br>
-            • <em>Zoom</em>: Mouse wheel scroll<br>
-            • <em>Pan</em>: Right-click & drag
+            <strong>3D Navigation Controls (Default: Pan):</strong><br>
+            • <em>Pan</em>: Left-click & drag on canvas<br>
+            • <em>Rotate</em>: Right-click & drag (or select Orbital icon in toolbar)<br>
+            • <em>Zoom</em>: Mouse wheel scroll
         </div>
         
         <div class="card sources-card">
@@ -129,7 +129,7 @@
             hoverinfo: 'none', showlegend: false
         };
         
-        // Slider steps
+        // Slider steps (REDRAW MUST BE TRUE FOR WEBGL 3D SCATTER UPDATES!)
         const sliderSteps = frames.map(f => ({
             method: 'animate',
             label: f.name,
@@ -141,6 +141,7 @@
         }));
         
         const layout = {
+            dragmode: 'pan',
             scene: {
                 xaxis: { visible: false, range: [-0.1, 1.1] },
                 yaxis: { visible: false, range: [-0.1, 1.0] },
